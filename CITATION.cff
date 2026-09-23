@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use SymNet, please cite the paper below."
 title: "SymNet reproduction code"
 type: software
-repository-code: https://github.com/LyuzhouYe98/SymNet-Directional-Transmitter-Dataset
+repository-code: https://github.com/LyuzhouYe98/SymNet--a-multi-task-network-for-joint-radio-map-reconstruction-and-transmitter-localization
 authors:
   - family-names: Ye
     given-names: Lyuzhou
@@ -11,7 +11,7 @@ authors:
   - family-names: Huang
     given-names: Yan
 preferred-citation:
-  type: article
+  type: conference-paper
   title: "SymNet: A Multi-Task Network for Joint Radio Map Reconstruction and Transmitter Localization"
   authors:
     - family-names: Ye
@@ -21,6 +21,8 @@ preferred-citation:
     - family-names: Huang
       given-names: Yan
   year: 2026
-  journal: arXiv
-  doi: 10.48550/arXiv.2608.00087
-  url: https://arxiv.org/abs/2608.00087
+  collection-title: "2026 IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)"
+  start: 150
+  end: 159
+  doi: 10.1109/WACV61042.2026.00023
+  url: https://ieeexplore.ieee.org/document/11492179

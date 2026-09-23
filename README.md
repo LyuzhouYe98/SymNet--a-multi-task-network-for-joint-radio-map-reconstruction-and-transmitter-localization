@@ -1,18 +1,17 @@
 # SymNet
 
-Reproduction code for **SymNet: A Multi-Task Network for Joint Radio Map
+Code and pretrained model for **SymNet: A Multi-Task Network for Joint Radio Map
 Reconstruction and Transmitter Localization**.
 
 Lyuzhou Ye, Thanh Dat Le, and Yan Huang.
 
 [Paper](https://ieeexplore.ieee.org/document/11492179) |
-[Downloads](https://github.com/LyuzhouYe98/SymNet--a-multi-task-network-for-joint-radio-map-reconstruction-and-transmitter-localization/releases) |
-[Detailed reproduction guide](docs/REPRODUCTION.md) |
-[Verification records](verification/README.md)
+[Dataset and checkpoint](https://github.com/LyuzhouYe98/SymNet--a-multi-task-network-for-joint-radio-map-reconstruction-and-transmitter-localization/releases/tag/Dataset) |
+[Implementation details](docs/REPRODUCTION.md)
+
 SymNet jointly predicts a radio map and a transmitter-localization heatmap from
-three input channels: sampled normalized RSS, sampling/building information,
-and distance to the nearest building (DNB). This release covers the original
-**single-transmitter** task, not later SymNetPro multi-transmitter experiments.
+sampled RSS, a sampling/building map, and a distance-to-nearest-building (DNB)
+map. This repository implements the single-transmitter task.
 
 ## Installation
 
@@ -22,106 +21,75 @@ Clone this repository, enter its root, and use Python 3.12:
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-sha256sum -c SHA256SUMS
 ```
 
-Dependencies are pinned to the tested environment, including PyTorch 2.7.0.
-The source repository includes three reference examples but excludes the full
-dataset and checkpoint. Download those from the repository's **Releases** page,
-not GitHub's automatically generated "Source code" archives.
+## Dataset and Checkpoint
 
-## Download the Checkpoint
+Download from the [Dataset release](https://github.com/LyuzhouYe98/SymNet--a-multi-task-network-for-joint-radio-map-reconstruction-and-transmitter-localization/releases/tag/Dataset):
 
-The commands below use `curl`, GNU `tar`, and `zstd`. The `v1.0.0` release
-must be published with the listed attachments before these URLs work.
+- **Full package (1.44 GiB):** `symnet_release_arxiv2608_00087.tar.zst`, containing the dataset and checkpoint.
+- **Checkpoint only for a quick start (43 MiB):** `symnet_code_checkpoint_arxiv2608_00087.tar.zst`, containing the checkpoint and standalone examples.
 
-```bash
-REPO=LyuzhouYe98/SymNet-Directional-Transmitter-Dataset
-TAG=v1.0.0
-ASSET=symnet_code_checkpoint_arxiv2608_00087.tar.zst
-mkdir -p downloads
-curl -fL --retry 3 "https://github.com/$REPO/releases/$TAG/$ASSET" -o "downloads/$ASSET"
-curl -fL --retry 3 "https://github.com/$REPO/releases/$TAG/$ASSET.sha256" -o "downloads/$ASSET.sha256"
-(cd downloads && sha256sum -c "$ASSET.sha256") && \
-  tar --zstd -xf "downloads/$ASSET" --strip-components=1 \
-  symnet_release_arxiv2608_00087/checkpoints
-```
-
-This downloads the approximately 44 MiB quick-start archive and installs only
-`checkpoints/`; it does not replace your checked-out source. Alternatively,
-download the two files in your browser and use the same verification/extraction
-commands after placing them in `downloads/`.
+For training and evaluation, run the following from the repository root
+(requires `curl`, GNU `tar`, and `zstd`):
 
 ```bash
-python -m tools.verify_checkpoint --device cpu
-python predict.py --device cpu --output results/prediction.npz
-```
-
-The predictions NPZ contains `localization_heatmap`, `radio_map`, and
-`transmitter_yx` (row, column, in pixels). Use `--device cuda:0` for GPU
-inference. See [input format and examples](examples/README.md) for custom data.
-
-## Download the Dataset
-
-For training and evaluation, use the approximately 1.5 GiB full archive:
-
-```bash
-REPO=LyuzhouYe98/SymNet-Directional-Transmitter-Dataset
-TAG=v1.0.0
-ASSET=symnet_release_arxiv2608_00087.tar.zst
-mkdir -p downloads
-curl -fL --retry 3 "https://github.com/$REPO/releases/download/$TAG/$ASSET" -o "downloads/$ASSET"
-curl -fL --retry 3 "https://github.com/$REPO/releases/download/$TAG/$ASSET.sha256" -o "downloads/$ASSET.sha256"
-(cd downloads && sha256sum -c "$ASSET.sha256") && \
-  tar --zstd -xf "downloads/$ASSET" --strip-components=1 \
+BASE=https://github.com/LyuzhouYe98/SymNet--a-multi-task-network-for-joint-radio-map-reconstruction-and-transmitter-localization/releases/download/Dataset
+curl -fL "$BASE/symnet_release_arxiv2608_00087.tar.zst" -o symnet_data.tar.zst
+tar --zstd -xf symnet_data.tar.zst --strip-components=1 \
   symnet_release_arxiv2608_00087/data \
   symnet_release_arxiv2608_00087/checkpoints
-python -m tools.audit_release
 ```
 
-The full archive includes the checkpoint, so downloading both archives is not
-required. Data are installed into `data/`; neither data nor checkpoints should
-be committed to Git. Alternative dataset locations can be selected with
-`--data-root`.
-
-## Evaluation and Training
+This installs `data/` and `checkpoints/` without replacing the repository's code.
+The full package already includes the checkpoint, so only one archive is needed.
+For the smaller quick-start archive, extract just its checkpoint:
 
 ```bash
-# Table 3: exactly 20 sampled points.
+tar --zstd -xf symnet_code_checkpoint_arxiv2608_00087.tar.zst --strip-components=1 \
+  symnet_release_arxiv2608_00087/checkpoints
+```
+
+The propagation maps come from the ViT-RefineNet directional dataset. The package
+includes training/validation masks, five fixed-count test sets, and ten
+positive-ratio test sets. Data are ready to load; no dataset-generation step is
+needed. The upstream propagation simulator is not included.
+
+## Run SymNet
+
+```bash
+# Predict on the included example inputs.
+python predict.py --device cuda:0
+
+# Evaluate 1,000 examples with exactly 20 sampled points.
 python evaluate.py --sample-count 20 --max-samples 1000 --output results/test20.json
 
-# Table 4: historical nominal positive-ratio bin [10,20)%.
+# Evaluate the nominal [10,20)% positive-ratio test set.
 python evaluate.py --positive-ratio-bin 20 --max-samples 1000 --output results/pr20.json
 
-# One training batch and one validation batch.
-python train.py --fast-dev-run --batch-size 2 --num-workers 2 --devices 0
-
-# Full training using config.json.
+# Train using config.json.
 python train.py --devices 0
 ```
 
-Remove `--max-samples` for the full 590,000 examples in a selected test set.
-Fixed counts are `20,40,60,80,100`. Positive-ratio selectors are the nominal
-upper bounds `10,20,...,100`. The two selectors are mutually exclusive.
+Use `--device cpu` for CPU inference or evaluation. Remove `--max-samples` to
+evaluate all 590,000 examples in a selected test set. Fixed sample counts are
+`20,40,60,80,100`; positive-ratio bin upper bounds are `10,20,...,100`.
+Use `--data-root /path/to/data` if the dataset is stored elsewhere.
 
-DNB cutoff is 20 pixels; Gaussian localization targets use sigma 17 pixels;
-the default loss is radio-map MSE plus localization-heatmap MSE, with equal
-weights. Full architecture, mask counts, normalization, evaluation definitions,
-and training settings are documented in the [reproduction guide](docs/REPRODUCTION.md).
+`predict.py` saves the predicted radio map, localization heatmap, and
+transmitter coordinates. See [example input format](examples/README.md) for
+custom inputs and [implementation details](docs/REPRODUCTION.md) for DNB, loss,
+SkipNet, training settings, and resume options.
 
-## Reproducibility Scope
+## Configuration Corrections
 
-Checkpoint loading is strict and requires no legacy scripts or fixed server
-paths. The cleaned and original models matched exactly on three examples on
-each tested backend (CPU and H100). Separate backend references are included.
-These checks verify compatibility, not a new full run of every paper result.
+The experiments used 274 training buildings (27,400 maps and 274,000 training
+pairs) and Adam with zero weight decay. These correct the training-set size and
+optimizer listed in the paper. The released checkpoint is from epoch 122
+(zero-based). The current `config.json` defaults to AdamW; set `optimizer` to
+`Adam` and `weight_decay` to `0.0` to use the original training optimizer.
 
-Historical differences are documented rather than hidden: the preserved
-training split contains 274 buildings, the checkpoint is from epoch 122
-(zero-based), and its historical optimizer differs from the paper's AdamW
-setting. See [artifact notes](docs/REPRODUCTION.md#artifact-notes).
-
-## Citation and License
+## Citation
 
 ```bibtex
 @INPROCEEDINGS{SymNet,
@@ -152,4 +120,3 @@ location = {The Graduate Hotel Minneapolis, Minneapolis, MN, USA},
 series = {SIGSPATIAL '25}
 }
 ```
-
