@@ -1,7 +1,7 @@
 # SymNet Reproduction Artifacts
 
 Single-transmitter reproduction materials for
-[SymNet: A Multi-Task Network for Joint Radio Map Reconstruction and Transmitter Localization](https://arxiv.org/abs/2608.00087).
+[SymNet: A Multi-Task Network for Joint Radio Map Reconstruction and Transmitter Localization](https://ieeexplore.ieee.org/document/11492179).
 
 ## Downloads
 
