@@ -1,0 +1,19 @@
+{
+  "device": "cpu",
+  "parameters": 11341930,
+  "samples": [
+    {
+      "localization_heatmap_max_abs_difference": 0.0,
+      "radio_map_max_abs_difference": 0.0
+    },
+    {
+      "localization_heatmap_max_abs_difference": 0.0,
+      "radio_map_max_abs_difference": 0.0
+    },
+    {
+      "localization_heatmap_max_abs_difference": 0.0,
+      "radio_map_max_abs_difference": 0.0
+    }
+  ],
+  "passed": true
+}

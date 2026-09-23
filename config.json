@@ -1,0 +1,21 @@
+{
+  "image_size": 256,
+  "patch_size": 8,
+  "embedding_width": 192,
+  "attention_heads": 16,
+  "self_attention_depth": 6,
+  "mlp_ratio": 4.0,
+  "cross_attention_layers": 1,
+  "dnb_cutoff_pixels": 20,
+  "localization_gaussian_sigma_pixels": 17,
+  "radio_map_loss_weight": 1.0,
+  "localization_loss_weight": 1.0,
+  "batch_size": 32,
+  "epochs": 100,
+  "skipnet_learning_rate": 0.0005,
+  "other_learning_rate": 0.001,
+  "optimizer": "AdamW",
+  "weight_decay": 0.01,
+  "checkpoint_monitor": "val_localization_error",
+  "seed": 42
+}

@@ -1,0 +1,31 @@
+# Large research artifacts belong in GitHub Releases, not Git history.
+/data/
+/checkpoints/
+/downloads/
+*.ckpt
+*.pt
+*.pth
+*.tar
+*.tar.gz
+*.tar.zst
+*.zip
+
+# Generated files and local environments.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+runs/
+results/
+lightning_logs/
+*.log
+.DS_Store
+.vscode/
+.idea/
+
+# Local credentials must not be committed.
+.env
+.env.*
+*.pem
+*.key

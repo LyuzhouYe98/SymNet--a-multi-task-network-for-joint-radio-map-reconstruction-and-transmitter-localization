@@ -1,0 +1,26 @@
+{
+  "repository": "LyuzhouYe98/SymNet-Directional-Transmitter-Dataset",
+  "planned_tag": "v1.0.0",
+  "assets": [
+    {
+      "name": "symnet_code_checkpoint_arxiv2608_00087.tar.zst",
+      "bytes": 45137308,
+      "sha256": "3e5ed7f1a36a150bab1935962b565ae4b6f2f3e792682e9625ca4c2e3dc49daf"
+    },
+    {
+      "name": "symnet_code_checkpoint_arxiv2608_00087.tar.zst.sha256",
+      "bytes": 113,
+      "sha256": "19a0c9afe1e75d5521cc554fd8ee31a8920ec36f187ac8a57a5d90321b5df3f1"
+    },
+    {
+      "name": "symnet_release_arxiv2608_00087.tar.zst",
+      "bytes": 1542260738,
+      "sha256": "051ab0bc88a0c4c7ea811dc39c41e5324ab0562a5c2d73f779f18c4e88fb2788"
+    },
+    {
+      "name": "symnet_release_arxiv2608_00087.tar.zst.sha256",
+      "bytes": 105,
+      "sha256": "56b3fd59bcb0208ee76573a2bbff580406c67ab390a2f4ade8bf92594d962448"
+    }
+  ]
+}
