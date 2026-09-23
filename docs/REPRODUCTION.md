@@ -152,8 +152,3 @@ python tools/prepare_release_data.py \
 - This package is for the paper's single-transmitter task. Multi-transmitter files found beside the dataset belong to later experiments and are deliberately excluded.
 - Checkpoint compatibility is tested against the original `bnd.py` on three examples covering fixed-count and positive-ratio tests. On each tested backend (CPU and H100), both prediction maps are exactly equal before and after cleanup. CPU and GPU results can differ numerically, so separate frozen references are included. This verifies code compatibility, not a fresh rerun of every published result.
 
-## Real-World RSS Adaptation
-
-Use the same fixed global normalization learned from the target receiver hardware, replace simulated building rasters with aligned floor-plan occupancy maps, and compute DNB at the real map resolution. Fine-tune first on synthetic-to-real mixtures and then on measured maps while keeping train/validation locations or buildings disjoint. If antenna labels are unavailable, train radio reconstruction first and calibrate localization with a small labeled subset; do not assume that simulated RSS dynamic range or pixel-to-meter scale transfers unchanged.
-
-No redistribution license is asserted by this reconstruction package. Select and add the intended code and dataset licenses before public distribution.
