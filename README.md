@@ -153,5 +153,3 @@ series = {SIGSPATIAL '25}
 }
 ```
 
-Author approval of the code license and upstream dataset redistribution terms
-is pending in this staging copy. See [provenance and license status](docs/PROVENANCE.md).
