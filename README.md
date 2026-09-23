@@ -124,12 +124,32 @@ setting. See [artifact notes](docs/REPRODUCTION.md#artifact-notes).
 ## Citation and License
 
 ```bibtex
-@article{ye2026symnet,
-  title={SymNet: A Multi-Task Network for Joint Radio Map Reconstruction and Transmitter Localization},
+@INPROCEEDINGS{SymNet,
   author={Ye, Lyuzhou and Le, Thanh Dat and Huang, Yan},
-  journal={arXiv preprint arXiv:2608.00087},
+  booktitle={2026 IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)}, 
+  title={SymNet: A Multi-Task Network for Joint Radio Map Reconstruction and Transmitter Localization}, 
   year={2026},
-  doi={10.48550/arXiv.2608.00087}
+  volume={},
+  number={},
+  pages={150-159},
+  keywords={Antennas;Feeds;Antennas and propagation;Directional antennas;Radio networks;Radio broadcasting;Filtering;Filters;MIMICs;Millimeter wave integrated circuits;transmitter localization;joint prediction;multi-task learning;wireless propagation;radio map reconstruction;directional transmitter},
+  doi={10.1109/WACV61042.2026.00023}}
+@inproceedings{ViT-RefineNet,
+author = {Ye, Lyuzhou and Le, Thanh Dat and Huang, Yan},
+title = {ViT-RefineNet for Directional Signal Radio Map Reconstruction from Sparse Samples},
+year = {2025},
+isbn = {9798400720864},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3748636.3762750},
+doi = {10.1145/3748636.3762750},
+abstract = {Accurately predicting directional radio maps is crucial for various wireless applications; however, existing methods that primarily rely on Convolutional Neural Networks (CNNs) or U-Nets designed for omnidirectional signals struggle to capture the long-range dependencies and angular sensitivities inherent in directional signal propagation (especially when influenced by environmental factors like building occlusions and reflections). To overcome these limitations, we introduce a novel framework, denoted as "ViT-RefineNet," that is specifically designed for predicting directional radio maps from sparse signal measurements. Our approach integrates a Vision Transformer (ViT)-based model to capture global dependencies with multiple U-Net-like modules for localized refinement at different processing stages. By effectively combining global context understanding with local detail enhancement, ViT-RefineNet offers significant advantages over traditional CNN-based and U-Net-based methods in predicting directional radio maps from sparse directional signal measurements. Experimental results demonstrate the superior performance of our proposed ViT-RefineNet compared to state-of-the-art models.1},
+booktitle = {Proceedings of the 33rd ACM International Conference on Advances in Geographic Information Systems},
+pages = {396–406},
+numpages = {11},
+keywords = {radio map estimation, directional transmitter, deep learning, visiontransformer},
+location = {The Graduate Hotel Minneapolis, Minneapolis, MN, USA},
+series = {SIGSPATIAL '25}
 }
 ```
 
