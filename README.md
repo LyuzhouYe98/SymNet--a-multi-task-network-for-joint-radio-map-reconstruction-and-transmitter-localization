@@ -4,8 +4,9 @@ Reproduction code for **SymNet: A Multi-Task Network for Joint Radio Map
 Reconstruction and Transmitter Localization**.
 
 Lyuzhou Ye, Thanh Dat Le, and Yan Huang.
-[Paper](https://arxiv.org/abs/2608.00087) |
-[Downloads](https://github.com/LyuzhouYe98/SymNet-Directional-Transmitter-Dataset/releases) |
+[Paper](https://ieeexplore.ieee.org/document/11492179) |
+[Downloads](https://github.com/LyuzhouYe98/SymNet--a-multi-task-network-for-joint-radio-map-reconstruction-and-transmitter-localization
+/releases) |
 [Detailed reproduction guide](docs/REPRODUCTION.md) |
 [Verification records](verification/README.md)
 
@@ -40,8 +41,8 @@ REPO=LyuzhouYe98/SymNet-Directional-Transmitter-Dataset
 TAG=v1.0.0
 ASSET=symnet_code_checkpoint_arxiv2608_00087.tar.zst
 mkdir -p downloads
-curl -fL --retry 3 "https://github.com/$REPO/releases/download/$TAG/$ASSET" -o "downloads/$ASSET"
-curl -fL --retry 3 "https://github.com/$REPO/releases/download/$TAG/$ASSET.sha256" -o "downloads/$ASSET.sha256"
+curl -fL --retry 3 "https://github.com/$REPO/releases/$TAG/$ASSET" -o "downloads/$ASSET"
+curl -fL --retry 3 "https://github.com/$REPO/releases/$TAG/$ASSET.sha256" -o "downloads/$ASSET.sha256"
 (cd downloads && sha256sum -c "$ASSET.sha256") && \
   tar --zstd -xf "downloads/$ASSET" --strip-components=1 \
   symnet_release_arxiv2608_00087/checkpoints
