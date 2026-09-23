@@ -4,12 +4,11 @@ Reproduction code for **SymNet: A Multi-Task Network for Joint Radio Map
 Reconstruction and Transmitter Localization**.
 
 Lyuzhou Ye, Thanh Dat Le, and Yan Huang.
--[Paper](https://ieeexplore.ieee.org/document/11492179) |
--[Downloads](https://github.com/LyuzhouYe98/SymNet--a-multi-task-network-for-joint-radio-map-reconstruction-and-transmitter-localization
-/releases) |
--[Detailed reproduction guide](docs/REPRODUCTION.md) |
--[Verification records](verification/README.md)
 
+[Paper](https://ieeexplore.ieee.org/document/11492179) |
+[Downloads](https://github.com/LyuzhouYe98/SymNet--a-multi-task-network-for-joint-radio-map-reconstruction-and-transmitter-localization/releases) |
+[Detailed reproduction guide](docs/REPRODUCTION.md) |
+[Verification records](verification/README.md)
 SymNet jointly predicts a radio map and a transmitter-localization heatmap from
 three input channels: sampled normalized RSS, sampling/building information,
 and distance to the nearest building (DNB). This release covers the original
