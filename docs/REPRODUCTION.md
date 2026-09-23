@@ -146,8 +146,6 @@ python tools/prepare_release_data.py \
 
 ## Artifact Notes
 
-The release records the artifacts as they exist rather than silently altering them:
-
 - The paper reports 27,600 training maps and 276,000 training pairs. The surviving source directory and its original ZIP archive both contain 27,400 maps from 274 buildings and 274,000 pairs. Validation and test counts match the paper: 5,900 maps from 59 buildings, 236,000 validation pairs, and 590,000 test pairs per sampling count.
 - The paper specifies 100 epochs. The surviving pretrained checkpoint is labeled epoch 122 (zero-based), so it reflects additional training beyond the paper schedule.
 - The paper specifies AdamW. The surviving checkpoint's archived optimizer state has zero weight decay and is consistent with the historical Adam training script. `train.py` uses AdamW with its default weight decay of 0.01 (weight decay is unspecified in the paper). To use the historical optimizer instead, set `optimizer` to `Adam` and `weight_decay` to `0.0` in `config.json`. The supplied checkpoint preserves the surviving trained weights.
