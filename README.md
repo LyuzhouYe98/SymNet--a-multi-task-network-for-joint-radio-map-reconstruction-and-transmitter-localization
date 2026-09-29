@@ -131,7 +131,7 @@ pages = {396–406},
 numpages = {11},
 keywords = {radio map estimation, directional transmitter, deep learning, visiontransformer},
 location = {The Graduate Hotel Minneapolis, Minneapolis, MN, USA},
-series = {SIGSPATIAL '25}
+series = {SIGSPATIAL '25}}
 @INPROCEEDINGS{SymNet,
   author={Ye, Lyuzhou and Le, Thanh Dat and Huang, Yan},
   booktitle={2026 IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)}, 
@@ -150,6 +150,6 @@ series = {SIGSPATIAL '25}
       archivePrefix={arXiv},
       primaryClass={cs.IT},
       url={https://arxiv.org/abs/2609.33964}, 
-}
+
 }
 ```
