@@ -150,6 +150,5 @@ series = {SIGSPATIAL '25}}
       archivePrefix={arXiv},
       primaryClass={cs.IT},
       url={https://arxiv.org/abs/2609.33964}, 
-
 }
 ```
