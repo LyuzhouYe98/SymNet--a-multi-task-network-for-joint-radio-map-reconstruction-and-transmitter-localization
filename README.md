@@ -116,16 +116,6 @@ optimizer listed in the paper. The released checkpoint is from epoch 122
 ## Citation
 
 ```bibtex
-@INPROCEEDINGS{SymNet,
-  author={Ye, Lyuzhou and Le, Thanh Dat and Huang, Yan},
-  booktitle={2026 IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)}, 
-  title={SymNet: A Multi-Task Network for Joint Radio Map Reconstruction and Transmitter Localization}, 
-  year={2026},
-  volume={},
-  number={},
-  pages={150-159},
-  keywords={Antennas;Feeds;Antennas and propagation;Directional antennas;Radio networks;Radio broadcasting;Filtering;Filters;MIMICs;Millimeter wave integrated circuits;transmitter localization;joint prediction;multi-task learning;wireless propagation;radio map reconstruction;directional transmitter},
-  doi={10.1109/WACV61042.2026.00023}}
 @inproceedings{ViT-RefineNet,
 author = {Ye, Lyuzhou and Le, Thanh Dat and Huang, Yan},
 title = {ViT-RefineNet for Directional Signal Radio Map Reconstruction from Sparse Samples},
@@ -142,5 +132,24 @@ numpages = {11},
 keywords = {radio map estimation, directional transmitter, deep learning, visiontransformer},
 location = {The Graduate Hotel Minneapolis, Minneapolis, MN, USA},
 series = {SIGSPATIAL '25}
+@INPROCEEDINGS{SymNet,
+  author={Ye, Lyuzhou and Le, Thanh Dat and Huang, Yan},
+  booktitle={2026 IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)}, 
+  title={SymNet: A Multi-Task Network for Joint Radio Map Reconstruction and Transmitter Localization}, 
+  year={2026},
+  volume={},
+  number={},
+  pages={150-159},
+  keywords={Antennas;Feeds;Antennas and propagation;Directional antennas;Radio networks;Radio broadcasting;Filtering;Filters;MIMICs;Millimeter wave integrated circuits;transmitter localization;joint prediction;multi-task learning;wireless propagation;radio map reconstruction;directional transmitter},
+  doi={10.1109/WACV61042.2026.00023}}
+@misc{ye2026symnetprolosawaredirectionalmultitransmitter,
+      title={SymNetPro: LOS-Aware Directional Multi-Transmitter Localization from Sparse Radio Observations}, 
+      author={Lyuzhou Ye and Heng Fan and Yan Huang},
+      year={2026},
+      eprint={2609.33964},
+      archivePrefix={arXiv},
+      primaryClass={cs.IT},
+      url={https://arxiv.org/abs/2609.33964}, 
+}
 }
 ```
