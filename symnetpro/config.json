@@ -1,0 +1,18 @@
+{
+  "model": {"img_size": 256, "patch_size": 8, "in_chans": 2, "embed_dim": 192, "depth": 6, "num_heads": 16, "mlp_ratio": 4.0},
+  "patch_topk": 16,
+  "sampling_points": 100,
+  "batch_size_per_device": 16,
+  "reference_devices": 4,
+  "max_epochs": 7,
+  "seed": 42,
+  "optimizer": "Adam",
+  "skip_lr": 0.00025,
+  "other_lr": 0.0005,
+  "weight_decay": 0.0,
+  "scheduler": null,
+  "localization_threshold": 0.25,
+  "nms_size": 11,
+  "ospa_cutoff": 20.0,
+  "ospa_order": 2
+}

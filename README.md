@@ -7,11 +7,15 @@ Lyuzhou Ye, Thanh Dat Le, and Yan Huang.
 
 [Paper](https://ieeexplore.ieee.org/document/11492179) |
 [Dataset and checkpoint](https://github.com/LyuzhouYe98/SymNet--a-multi-task-network-for-joint-radio-map-reconstruction-and-transmitter-localization/releases/tag/Dataset) |
-[Implementation details](docs/REPRODUCTION.md)
+[Implementation details](docs/REPRODUCTION.md) |
+[SymNetPro training and inference](symnetpro/README.md) |
+[Multi-transmitter dataset](datasets/symnetpro/README.md)
 
 SymNet jointly predicts a radio map and a transmitter-localization heatmap from
 sampled RSS, a sampling/building map, and a distance-to-nearest-building (DNB)
-map. This repository implements the single-transmitter task.
+map. The model code in this repository implements the single-transmitter task.
+The separate `symnetpro/` module provides multi-transmitter training, inference
+and a compatible checkpoint, with a converter that reuses the same source maps.
 
 ## Installation
 
@@ -80,6 +84,26 @@ Use `--data-root /path/to/data` if the dataset is stored elsewhere.
 transmitter coordinates. See [example input format](examples/README.md) for
 custom inputs and [implementation details](docs/REPRODUCTION.md) for DNB, loss,
 SkipNet, training settings, and resume options.
+
+## SymNetPro
+
+The [multi-transmitter dataset converter](datasets/symnetpro/README.md) reuses
+the source maps from the Dataset release above. No additional map download is
+needed. From the repository root, after extracting the full dataset:
+
+```bash
+python datasets/symnetpro/convert.py --symnet-root . \
+  --output Directional_Dataset --workers 8 --seed 42 --with-los
+```
+
+Original scene combinations and building splits are preserved. Sampling masks
+are regenerated deterministically: train/validation keep 10 masks per scene and
+sampling count, while test defaults to one. These new masks are not the original
+paper realizations. LOS tables are generated locally with `--with-los`.
+This does not change SymNet's existing data or model. See [SymNetPro instructions](symnetpro/README.md)
+for the code/checkpoint archive, training, resume, and inference. The all-in-one
+archive is `symnet_with_symnetpro_code_checkpoint_20260928.zip`; the smaller
+GitHub upload ZIP contains code only. Both reuse the existing dataset download.
 
 ## Configuration Corrections
 

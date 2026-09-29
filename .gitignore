@@ -9,6 +9,9 @@
 *.tar.gz
 *.tar.zst
 *.zip
+!datasets/symnetpro/scene_index.zip
+/Directional_Dataset/
+/symnetpro_smoke/
 
 # Generated files and local environments.
 __pycache__/
